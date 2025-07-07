@@ -1,0 +1,153 @@
+:root {
+  --primary-color: #007bff;
+  --secondary-color: #6c757d;
+  --danger-color: #dc3545;
+  --info-color: #17a2b8;
+  --success-color: #28a745;
+  --warning-color: #ffc107;
+}
+
+/* Estilos generales */
+body {
+  background-color: #f0f2f5;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.main-panel {
+  margin-top: 40px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  background-color: white;
+  padding: 30px;
+}
+
+/* Estructura del botón del acordeón */
+.accordion-button {
+  position: relative;
+  padding-right: 2.5rem;
+  /* Espacio para la flecha */
+}
+
+/* Ícono personalizado */
+.accordion-button .section-icon {
+  margin-right: 10px;
+}
+
+/* Flecha de Bootstrap */
+.accordion-button::after {
+  position: absolute;
+  right: 1.25rem;
+  margin-left: 0;
+}
+
+/* Estados del acordeón */
+.accordion-button:not(.collapsed) {
+  color: #fff;
+  background-color: var(--primary-color);
+}
+
+.accordion-button.collapsed {
+  background-color: #f8f9fa;
+  color: #212529;
+}
+
+/* Contenido del acordeón */
+.accordion-body p {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #e9ecef;
+  margin-bottom: 0;
+}
+
+.accordion-body p strong {
+  color: #495057;
+  width: 45%;
+}
+
+.accordion-body p span {
+  color: #212529;
+  width: 50%;
+  text-align: right;
+  word-break: break-word;
+}
+
+.photo {
+  max-width: 120px;
+  border-radius: 8px;
+  border: 3px solid #dee2e6;
+}
+
+.table-responsive {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+/* Colores por sección */
+.accordion-item.records .accordion-button:not(.collapsed) {
+  background-color: var(--danger-color);
+}
+
+.accordion-item.medical .accordion-button:not(.collapsed) {
+  background-color: var(--info-color);
+}
+
+.accordion-item.education .accordion-button:not(.collapsed) {
+  background-color: var(--success-color);
+}
+
+.accordion-item.employment .accordion-button:not(.collapsed) {
+  background-color: var(--warning-color);
+  color: #212529;
+}
+
+.accordion-item.family .accordion-button:not(.collapsed) {
+  background-color: var(--secondary-color);
+}
+
+.accordion-item.reniec .accordion-button:not(.collapsed) {
+  background-color: #6f42c1;
+}
+
+.accordion-item.sunat .accordion-button:not(.collapsed) {
+  background-color: #fd7e14;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .main-panel {
+    padding: 20px;
+    margin-top: 20px;
+  }
+
+  .photo {
+    max-width: 80px;
+    margin-bottom: 15px;
+  }
+
+  .accordion-body p {
+    flex-direction: column;
+  }
+
+  .accordion-body p strong,
+  .accordion-body p span {
+    width: 100%;
+    text-align: left;
+  }
+
+  .accordion-body p span {
+    margin-top: 5px;
+    font-weight: 500;
+  }
+
+}
+
+.accordion-collapse {
+  transition: all 0.3s ease;
+}
+
+.badge {
+  display: inline-flex !important;
+  width: auto !important;
+  color: #fff !important;
+}

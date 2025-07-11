@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de Información de Personas</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <style>
+    :root {
+      --primary-color: #007bff;
+      --secondary-color: #6c757d;
+      --danger-color: #dc3545;
+      --info-color: #17a2b8;
+      --success-color: #28a745;
+      --warning-color: #ffc107;
+    }
+    
+    body {
+      background-color: #f0f2f5;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .main-panel {
+      margin-top: 40px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      border-radius: 12px;
+      background-color: white;
+      padding: 30px;
+    }
+    .accordion-button:not(.collapsed) {
+      color: #fff;
+      background-color: var(--primary-color);
+    }
+    .accordion-button.collapsed {
+      background-color: #f8f9fa;
+      color: #212529;
+    }
+    .accordion-body p {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid #e9ecef;
+      margin-bottom: 0;
+    }
+    .accordion-body p strong {
+      color: #495057;
+      width: 45%;
+    }
+    .accordion-body p span {
+      color: #212529;
+      width: 50%;
+      text-align: right;
+      word-break: break-word;
+    }
+    .photo {
+      max-width: 120px;
+      border-radius: 8px;
+      border: 3px solid #dee2e6;
+    }
+    .table-responsive {
+      max-height: 400px;
+      overflow-y: auto;
+    }
+    .accordion-button::after {
+      margin-left: 10px;
+    }
+    .section-icon {
+      margin-right: 10px;
+      font-size: 1.1rem;
+    }
+    
+    /* Mejoras para móviles */
+    @media (max-width: 768px) {
+      .main-panel {
+        padding: 20px;
+        margin-top: 20px;
+      }
+      .photo {
+        max-width: 80px;
+        margin-bottom: 15px;
+      }
+      .accordion-body p {
+        flex-direction: column;
+      }
+      .accordion-body p strong, 
+      .accordion-body p span {
+        width: 100%;
+        text-align: left;
+      }
+      .accordion-body p span {
+        margin-top: 5px;
+        font-weight: 500;
+      }
+    }
+    
+    /* Transiciones suaves */
+    .accordion-collapse {
+      transition: all 0.3s ease;
+    }
+    
+    /* Colores específicos para cada sección */
+    .accordion-item.records .accordion-button:not(.collapsed) {
+      background-color: var(--danger-color);
+    }
+    .accordion-item.medical .accordion-button:not(.collapsed) {
+      background-color: var(--info-color);
+    }
+    .accordion-item.education .accordion-button:not(.collapsed) {
+      background-color: var(--success-color);
+    }
+    .accordion-item.employment .accordion-button:not(.collapsed) {
+      background-color: var(--warning-color);
+      color: #212529;
+    }
+    .accordion-item.family .accordion-button:not(.collapsed) {
+      background-color: var(--secondary-color);
+    }
+    .accordion-item.reniec .accordion-button:not(.collapsed) {
+      background-color: #6f42c1;
+    }
+    .accordion-item.sunat .accordion-button:not(.collapsed) {
+      background-color: #fd7e14;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="main-panel">
+      <h2 class="text-center mb-4 text-primary">
+        <i class="bi bi-person-badge-fill me-2"></i>Panel de Información de Personas
+      </h2>
+      
+      <div class="d-flex justify-content-between mb-3">
+        <button class="btn btn-sm btn-outline-primary" id="expandAll">
+          <i class="bi bi-arrows-angle-expand me-1"></i>Expandir Todo
+        </button>
+        <button class="btn btn-sm btn-outline-secondary" id="collapseAll">
+          <i class="bi bi-arrows-angle-contract me-1"></i>Colapsar Todo
+        </button>
+      </div>
+
+      <div class="accordion" id="accordionPanels">
+        <!-- Datos Personales -->
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#datosPersonales" aria-expanded="true" aria-label="Datos personales">
+              <i class="bi bi-person-vcard-fill section-icon"></i>Datos Personales
+            </button>
+          </h2>
+          <div id="datosPersonales" class="accordion-collapse collapse show" data-bs-parent="#accordionPanels">
+            <div class="accordion-body">
+              <div class="row align-items-center">
+                <div class="col-md-3 text-center mb-3 mb-md-0">
+                  <img src="data:image/jpeg;base64,[IMAGEN_BASE64]" alt="Foto" class="photo img-thumbnail">
+                  <div class="mt-2 small text-muted">Última actualización: 15/10/2023</div>
+                </div>
+                <div class="col-md-9">
+                  <p><strong>DNI:</strong><span>12345678</span></p>
+                  <p><strong>Apellido Paterno:</strong><span>Pérez</span></p>
+                  <p><strong>Apellido Materno:</strong><span>López</span></p>
+                  <p><strong>Nombres:</strong><span>Juan Carlos</span></p>
+                  <p><strong>Fecha de Nacimiento:</strong><span>01/01/1990 (33 años)</span></p>
+                  <p><strong>Sexo:</strong><span>Masculino</span></p>
+                  <p><strong>Estado Civil:</strong><span>Soltero</span></p>
+                  <p><strong>Dirección:</strong><span>Av. Siempre Viva 123</span></p>
+                  <p><strong>Ubicación:</strong><span>Lima - Lima - Miraflores</span></p>
+                  <p><strong>Nacionalidad:</strong><span>Peruana</span></p>
+                  <p><strong>Teléfono Fijo:</strong><span>1234567</span></p>
+                  <p><strong>Teléfono Móvil:</strong><span>987654321</span></p>
+                  <p><strong>Correo Electrónico:</strong><span>juan.perez@mail.com</span></p>
+                  <p><strong>Estado:</strong><span class="badge bg-success">Activo</span></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RENIEC -->
+        <div class="accordion-item reniec">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#reniecData" aria-expanded="false" aria-label="Datos RENIEC">
+              <i class="bi bi-file-earmark-text-fill section-icon"></i>Datos RENIEC
+            </button>
+          </h2>
+          <div id="reniecData" class="accordion-collapse collapse" data-bs-parent="#accordionPanels">
+            <div class="accordion-body">
+              <p><strong>Estado DNI:</strong><span>Vigente</span></p>
+              <p><strong>Fecha de Emisión:</strong><span>15/05/2020</span></p>
+              <p><strong>Fecha de Caducidad:</strong><span>15/05/2030</span></p>
+              <p><strong>Lugar de Emisión:</strong><span>Oficina RENIEC Miraflores</span></p>
+              <p><strong>Estado Civil Registrado:</strong><span>Soltero</span></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Records Penales -->
+        <div class="accordion-item records">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#recordsPenales" aria-expanded="false" aria-label="Records penales">
+              <i class="bi bi-shield-lock-fill section-icon"></i>Records Penales
+            </button>
+          </h2>
+          <div id="recordsPenales" class="accordion-collapse collapse" data-bs-parent="#accordionPanels">
+            <div class="accordion-body">
+              <div class="table-responsive">
+                <table class="table table-bordered table-striped table-hover">
+                  <thead class="table-danger">
+                    <tr>
+                      <th>Expediente</th>
+                      <th>Delito</th>
+                      <th>Código Delito</th>
+                      <th>Fecha Delito</th>
+                      <th>Tipo Sentencia</th>
+                      <th>Pena Impuesta</th>
+                      <th>Centro Penitenciario</th>
+                      <th>Estado</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>EXP12345</td>
+                      <td>Robo agravado</td>
+                      <td>ART-123</td>
+                      <td>15/03/2015</td>
+                      <td>Condenatoria</td>
+                      <td>5 años</td>
+                      <td>Lurigancho</td>
+                      <td><span class="badge bg-success">Cumplida</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="alert alert-info mt-3">
+                <i class="bi bi-info-circle-fill me-2"></i>Información proporcionada por el Ministerio de Justicia.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Seguro Médico -->
+        <div class="accordion-item medical">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#seguroMedico" aria-expanded="false" aria-label="Seguro médico">
+              <i class="bi bi-heart-pulse-fill section-icon"></i>Seguro Médico
+            </button>
+          </h2>
+          <div id="seguroMedico" class="accordion-collapse collapse" data-bs-parent="#accordionPanels">
+            <div class="accordion-body">
+              <p><strong>Tipo de Sangre:</strong><span>O+</span></p>
+              <p><strong>Alergias:</strong><span>Ninguna</span></p>
+              <p><strong>Enfermedades Crónicas:</strong><span>Hipertensión</span></p>
+              <p><strong>Contacto de Emergencia:</strong><span>María López (madre) - 987123456</span></p>
+              <h5 class="mt-4">Afiliaciones</h5>
+              <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                  <thead>
+                    <tr>
+                      <th>Tipo Seguro</th>
+                      <th>Fecha Afiliación</th>
+                      <th>Estado</th>
+                      <th>Centro Atención</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>ESSALUD</td>
+                      <td>01/01/2010</td>
+                      <td><span class="badge bg-success">Activo</span></td>
+                      <td>Hospital Rebagliati</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Educación -->
+        <div class="accordion-item education">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#educacion" aria-expanded="false" aria-label="Educación">
+              <i class="bi bi-book-fill section-icon"></i>Educación
+            </button>
+          </h2>
+          <div id="educacion" class="accordion-collapse collapse" data-bs-parent="#accordionPanels">
+            <div class="accordion-body">
+              <h5>Historial Académico</h5>
+              <div class="table-responsive mb-4">
+                <table class="table table-bordered table-striped">
+                  <thead>
+                    <tr>
+                      <th>Institución</th>
+                      <th>Carrera/Nivel</th>
+                      <th>Año Inicio</th>
+                      <th>Año Fin</th>
+                      <th>Estado</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Universidad Nacional Mayor de San Marcos</td>
+                      <td>Ingeniería de Sistemas</td>
+                      <td>2006</td>
+                      <td>2012</td>
+                      <td><span class="badge bg-success">Egresado</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              
+              <h5>Títulos y Diplomas</h5>
+              <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                  <thead>
+                    <tr>
+                      <th>Institución</th>
+                      <th>Título</th>
+                      <th>Tipo</th>
+                      <th>Fecha Obtención</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>UNMSM</td>
+                      <td>Bachiller en Ingeniería de Sistemas</td>
+                      <td>Grado Académico</td>
+                      <td>15/12/2012</td>
+                    </tr>
+                    <tr>
+                      <td>UNMSM</td>
+                      <td>Título Profesional de Ingeniero de Sistemas</td>
+                      <td>Título Profesional</td>
+                      <td>20/05/2013</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SUNAT -->
+        <div class="accordion-item sunat">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sunatData" aria-expanded="false" aria-label="Datos SUNAT">
+              <i class="bi bi-building-fill section-icon"></i>Datos SUNAT
+            </button>
+          </h2>
+          <div id="sunatData" class="accordion-collapse collapse" data-bs-parent="#accordionPanels">
+            <div class="accordion-body">
+              <p><strong>RUC:</strong><span>20123456781</span></p>
+              <p><strong>Tipo Contribuyente:</strong><span>Persona Natural</span></p>
+              <p><strong>Nombre Legal:</strong><span>PÉREZ LÓPEZ JUAN CARLOS</span></p>
+              <p><strong>Estado Contribuyente:</strong><span class="badge bg-success">HABIDO</span></p>
+              <p><strong>Fecha Inscripción:</strong><span>15/01/2015</span></p>
+              <p><strong>Domicilio Fiscal:</strong><span>Av. Siempre Viva 123, Miraflores, Lima</span></p>
+              <p><strong>Régimen Tributario:</strong><span>Régimen General</span></p>
+              
+              <h5 class="mt-4">Actividades Económicas</h5>
+              <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                  <thead>
+                    <tr>
+                      <th>Actividad</th>
+                      <th>Ingreso Aprox. Mensual</th>
+                      <th>Frecuencia</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Consultoría en Sistemas</td>
+                      <td>S/ 8,500.00</td>
+                      <td>Permanente</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MIMP -->
+        <div class="accordion-item family">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mimpData" aria-expanded="false" aria-label="Datos MIMP">
+              <i class="bi bi-people-fill section-icon"></i>Datos MIMP
+            </button>
+          </h2>
+          <div id="mimpData" class="accordion-collapse collapse" data-bs-parent="#accordionPanels">
+            <div class="accordion-body">
+              <p><strong>Situación Familiar:</strong><span>Vive con padres y hermana</span></p>
+              <p><strong>Número de Hijos:</strong><span>0</span></p>
+              <p><strong>Es Víctima de Violencia:</strong><span class="badge bg-danger">No</span></p>
+              
+              <h5 class="mt-4">Núcleo Familiar</h5>
+              <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                  <thead>
+                    <tr>
+                      <th>Nombre</th>
+                      <th>Parentesco</th>
+                      <th>Edad</th>
+                      <th>Ocupación</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>María López</td>
+                      <td>Madre</td>
+                      <td>60</td>
+                      <td>Docente</td>
+                    </tr>
+                    <tr>
+                      <td>José Pérez</td>
+                      <td>Padre</td>
+                      <td>62</td>
+                      <td>Jubilado</td>
+                    </tr>
+                    <tr>
+                      <td>Ana Pérez</td>
+                      <td>Hermana</td>
+                      <td>28</td>
+                      <td>Enfermera</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Funcionalidad para expandir/colapsar todos los acordeones
+    document.getElementById('expandAll').addEventListener('click', function() {
+      const accordions = document.querySelectorAll('.accordion-collapse');
+      accordions.forEach(acc => {
+        new bootstrap.Collapse(acc, { show: true });
+      });
+    });
+    
+    document.getElementById('collapseAll').addEventListener('click', function() {
+      const accordions = document.querySelectorAll('.accordion-collapse');
+      accordions.forEach(acc => {
+        new bootstrap.Collapse(acc, { hide: true });
+      });
+    });
+    
+    // Mejorar la accesibilidad del acordeón
+    document.querySelectorAll('.accordion-button').forEach(button => {
+      button.addEventListener('click', function() {
+        const targetId = this.getAttribute('data-bs-target');
+        const target = document.querySelector(targetId);
+        target.setAttribute('aria-expanded', this.classList.contains('collapsed') ? 'false' : 'true');
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,5 +1,5 @@
 <?php
-$host = "localhost:3307";
+$host = "localhost";
 $usuario = "root";
 $contrasena = "";
 $base_datos = "dni_sistema";
